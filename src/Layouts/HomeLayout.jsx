@@ -1,10 +1,19 @@
 import {FiMenu} from 'react-icons/fi';
 import {AiFillCloseCircle} from 'react-icons/ai';
+import {useDispatch, useSelector} from 'react-redux';
 
-import {Link} from 'react-router-dom';
+import {Link, useNavigate} from 'react-router-dom';
 import Footer from '../Components/Footer';
 
 function HomeLayout({children}){
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+
+   //for checking if user is logged in 
+   const  isLoggedIn = useSelector((state)=> state?.auth?.isLoggedIn);
+
+//    For displaying the option acc to role
+const role = useSelector((state)=> state?.auth?.role);
     //  //  //
     function changeWidth(){
         const drawerSide = document.getElementsByClassName('drawer-side');
@@ -17,9 +26,14 @@ function HomeLayout({children}){
         function changeWidth(){
             const drawerSide = document.getElementsByClassName('drawer-side');
             drawerSide[0].style.width = '0';
-        }
+       }    
+    }
+    async function handelLogout(e){
+        e.preventDefault();
 
-        
+        // const res= await dispatch(logout());
+        // if(res?.paylode?.success)
+        navigate('/');
     }
     //  //  //
     return(
@@ -36,6 +50,7 @@ function HomeLayout({children}){
                     />
                 </label>
             </div>
+
             
             <div className='drawer-side w-0 '>
                 <label htmlFor="my-drawer" className='drawer-overlay'>
@@ -50,6 +65,11 @@ function HomeLayout({children}){
                     <li>
                         <Link to="/">Home</Link>
                     </li>
+                    {isLoggedIn && role === 'ADMIN' && (
+                        <li>
+                            <Link to='/admin/dashbord'>Admin Dasebord </Link>
+                        </li>
+                    )}
                     <li>
                         <Link to="/courses">All Courses</Link>
                     </li>
@@ -59,6 +79,32 @@ function HomeLayout({children}){
                     <li>
                         <Link to="/About">About Us</Link>
                     </li>
+                    {!isLoggedIn && (
+                        <li className=' relative bottom-1 w-[90%] gap-3  hover:bg-transparent'>
+
+                        <div className="w-full flex items-center justify-center">
+                            <button className='btn-primary bg-blue-500 py-1 px-4 font-semibold rounded-md w-full hover:bg-blue-700 transition-all ease-in-out duration-300'>
+                                <Link to='/login'>Login</Link>
+                            </button>
+                            <button className='btn-secondry text-black bg-yellow-400 py-1 px-4 font-semibold rounded-md w-full  hover:bg-yellow-500 transition-all ease-in-out duration-300'>
+                                <Link to='/register'>Singup</Link>
+                            </button>
+                        </div>
+                        </li>
+                    )}
+                    {isLoggedIn && (
+                        <li className=' relative bottom-1 w-[90%] gap-3  hover:bg-transparent'>
+
+                        <div className="w-full flex items-center justify-center">
+                            <button className='btn-primary bg-blue-500 py-1 px-4 font-semibold rounded-md w-full hover:bg-blue-700 transition-all ease-in-out duration-300'>
+                                <Link to='/user/profile'>Profile</Link>
+                            </button>
+                            <button className='btn-secondry text-black bg-yellow-400 py-1 px-4 font-semibold rounded-md w-full  hover:bg-yellow-500 transition-all ease-in-out duration-300'>
+                                <Link onClick={handelLogout}>Logout</Link>
+                            </button>
+                        </div>
+                        </li>
+                    )}
                 </ul>
 
             </div>
