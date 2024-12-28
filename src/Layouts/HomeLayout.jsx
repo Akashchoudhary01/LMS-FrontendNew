@@ -56,7 +56,7 @@ const role = useSelector((state)=> state?.auth?.role);
                 <label htmlFor="my-drawer" className='drawer-overlay'>
 
                 </label>
-                <ul className="menu p-4 w-48 sm:w-80 bg-base-100 text-base-content">
+                <ul className="menu p-4 h-[100%] w-48 sm:w-80 bg-base-100 text-base-content">
                     <li className='w-fit absolute right-2 z-50'>
                         <button onClick={hideDrawer}>
                             <AiFillCloseCircle size={24}/>
@@ -80,7 +80,7 @@ const role = useSelector((state)=> state?.auth?.role);
                         <Link to="/About">About Us</Link>
                     </li>
                     {!isLoggedIn && (
-                        <li className=' relative bottom-1 w-[90%] gap-3  hover:bg-transparent'>
+                        <li className='bottom-7 absolute w-[90%] gap-3 h-22 hover:bg-transparent'>
 
                         <div className="w-full flex items-center justify-center">
                             <button className='btn-primary bg-blue-500 py-1 px-4 font-semibold rounded-md w-full hover:bg-blue-700 transition-all ease-in-out duration-300'>
