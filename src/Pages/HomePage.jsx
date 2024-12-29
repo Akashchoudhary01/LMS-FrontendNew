@@ -22,7 +22,7 @@ function HomePage() {
     </p>
 
     {/* Button Section */}
-    <div className="flex flex-col md:flex-row gap-4 md:gap-6 mb-1">
+    <div className="flex  flex-col md:flex-row gap-4 md:gap-6 mb-2">
       <Link to="/courses">
         <button className="bg-blue-600 px-5 py-3 rounded-md font-semibold text-sm md:text-lg cursor-pointer hover:bg-blue-700 transition-all ease-in-out duration-300">
           Explore Courses
