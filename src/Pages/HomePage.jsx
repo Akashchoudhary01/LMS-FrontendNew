@@ -18,7 +18,9 @@ function HomePage() {
       <span className="text-blue-500 font-bold">Online Courses</span>
     </h1>
     <p className="text-base md:text-xl text-gray-200">
-      We Have a Large Library of Courses Taught by Highly Qualified Faculty at a Very Affordable Cost
+      <span className="text-2xl text-blue-500">CodeIt</span> is your one-stop-shop for <span className=" text-blue-500">upscaling</span>. Get maximum value for time
+      and resources you invest, with  <span className=" text-blue-500">job-ready courses </span> & high-technology,
+      available at the lowest cost.
     </p>
 
     {/* Button Section */}

@@ -3,9 +3,11 @@ import HomeLayout from "../Layouts/HomeLayout";
 import { BsPersonCircle } from "react-icons/bs";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-function Singup() {
+import {toast} from 'react-hot-toast' 
+import { createAccount } from "../redux/Slices/AuthSlice";
+function Signup() {
   const dispatch = useDispatch();
-  const nevigator = useNavigate();
+  const navigate = useNavigate();
 
   const [previewImage, setPreviewImage] = useState("");
   const [singupData, setSingupData] = useState({
@@ -41,11 +43,69 @@ function getImage(event){
         })
     }
 }
+// create Account function
+
+async function createNewAccount(event){
+  event.preventDefault();
+  if(!singupData.email || !singupData.Password ||!singupData.fullName){
+    toast.error('Please Fill all the details');
+    return;
+  }
+  // Avatar
+  if(!singupData.avatar){
+    toast.error('Please add a profile picture');
+    return;
+  }
+
+  // checking name fild length
+  if(singupData.fullName.length<5){
+    toast.error('Name should be at least 5 characters')
+    return;
+  }
+  if(singupData.fullName.length>25){
+    toast.error('Name should be less then 25 characters')
+    return;
+  }
+  //  checking valid email
+  if(!singupData.email.match( /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/)){
+    toast.error('Invalid Email Id')
+    return;
+  }
+
+  // Checking Password Validation
+  if (!singupData.Password.match(/(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$/)) {
+    toast.error('Password should be at least 8 characters long, with at least one uppercase letter, one lowercase letter, one number, and one special character');
+  }
+
+   const formData = new FormData();
+  formData.append("fullName" , singupData.fullName);
+   formData.append( "email" ,singupData.email);
+   formData.append("Password" , singupData.Password);
+   formData.append( "avatar" , singupData.avatar);
+
+  //  dispatch create account action
+  const response = await dispatch(createAccount(formData));
+  console.log(response);
+  // redirecting to login page if true
+  if (response?.payload?.success) {
+  toast.success("Account created successfully!");
+  navigate("/");  // Navigate to the home page or login page
+}
+
+  setSingupData({
+    fullName: "",
+    email: "",
+    Password: "",
+    avatar: ""
+  });
+
+  setPreviewImage("");
+}
 
   return (
     <HomeLayout>
       <div className="flex overflow-x-auto flex-col h-[100vh] items-center justify-center">
-        <form className="flex flex-col justify-center gap-3 rounded-lg p-4 text-white w-96 items-center shadow-[0_0_10px_black]">
+        <form noValidate onSubmit={createNewAccount} className="flex flex-col justify-center gap-3 rounded-lg p-4 text-white w-96 items-center shadow-[0_0_10px_black]">
           <h1 className="text-center text-2xl font-bold">Registration Page</h1>
 
 {/* Input for imag {/* Image Upload */}
@@ -100,11 +160,11 @@ function getImage(event){
               <div className="flex flex-col gap-1">
                 <label htmlFor="Password"> Password</label>
                 <input
-                  type="password"
+                  type="Password"
                   required
-                  name="password"
-                  id="password"
-                  placeholder="Enter Your password"
+                  name="Password"
+                  id="Password"
+                  placeholder="Enter Your Password"
                   className="bg-transparent px-2 py-1 border"
                   onChange={handelUserInput}
                   value={singupData.Password}
@@ -134,4 +194,4 @@ function getImage(event){
     </HomeLayout>
   );
 }
-export default Singup;
+export default Signup;
