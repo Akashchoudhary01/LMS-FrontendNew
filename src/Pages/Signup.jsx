@@ -86,10 +86,11 @@ async function createNewAccount(event){
   //  dispatch create account action
   const response = await dispatch(createAccount(formData));
   console.log(response);
+
   // redirecting to login page if true
   if (response?.payload?.success) {
-  toast.success("Account created successfully!");
-  navigate("/");  // Navigate to the home page or login page
+    navigate("/");  // Navigate to the home page or login page
+  // toast.success("Account created successfully!");
 }
 
   setSingupData({

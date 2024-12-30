@@ -8,23 +8,58 @@ const initialState = {
     data :localStorage.getItem('data') || "  ",
 };
 // Function to handle singup
-export const createAccount = createAsyncThunk("/auth/signup", async (data, { rejectWithValue }) => {
-    try {
-      // Start the API request
-      const response = await axiosInstances.post("user/register", data);
-      
-      // Return the response data to the redux slice
-      return response.data;
-    } catch (err) {
-      // Handle errors and return the error message to redux slice
-      return rejectWithValue(err.response?.data?.message || "Failed to create account");
-    }
-  });
-  
+export const createAccount = createAsyncThunk("/auth/singup" , async(data)=>{
+  try{
+    const res = axiosInstances.post("user/register" , data);
+    toast.promise(res,{
+      loading: "Wait ! creating your Account",
+      success:(data) =>{
+        return data?.data?.message;
+      },
+      error:"failed to create account"
+    })
+    return (await res).data;
+
+  }
+  catch(err){
+    toast.error(err?.response?.data?.message)
+  }
+})
+
+
+// Function to handle singup
+export const login= createAsyncThunk("/auth/login" , async(data)=>{
+  try{
+    const res = axiosInstances.post("user/login" , data);
+    await toast.promise(res, {
+      loading: "Loading...",
+      success: (data) => {
+        return data?.data?.message;
+      },
+      error: "Failed to log in",
+    });
+
+    // getting response resolved here
+    res = await res;
+    return res.data;
+  } catch (error) {
+    toast.error(error.message);
+  }
+});
+
+
 const AuthSlice = createSlice({
     name: 'auth',
     initialState,
-    reducers: {}
+    reducers: {},
+    extraReducers:(builder) =>{
+      builder.addCase(login.fulfilled,(state , action)=>{
+        localStorage.setItem("data" , JSON.stringify(action?.payload?.user));
+        localStorage.setItem("isLoggedIn" , true);
+        localStorage.setItem("role" , action?.payload?.user?.role);
+
+      })
+    }
 });
 
 export const {} = AuthSlice.actions;

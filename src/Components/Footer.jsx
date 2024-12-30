@@ -8,7 +8,7 @@ const year = currentDate.getFullYear();
 function Footer(){
     return( 
         <>
-        <footer className='relative left-0 bottom-0 w-full h-[12vh] md:h-[10vh] md:mb-0 sm:h-[10vh] lg:h-[10vh] py-2 flex flex-col sm:flex-row items-center justify-between text-gray-100 bg-gradient-to-r from-blue-900 to-blue-600 px-4 sm:px-10 mt-5  md:px-20'>
+        <footer className='relative left-0 bottom-0 w-full h-[10vh] md:h-[10vh] md:mb-0 sm:h-[10vh] lg:h-[10vh] py-2 flex flex-col sm:flex-row items-center justify-between text-gray-100 bg-gradient-to-r from-blue-900 to-blue-600 px-4 sm:px-10 mt-5  md:px-20'>
         <section className='text-lg'>
             Copyright {year} | All right Reserved
         </section>
