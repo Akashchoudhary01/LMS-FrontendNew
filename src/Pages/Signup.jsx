@@ -84,14 +84,12 @@ async function createNewAccount(event){
    formData.append( "avatar" , singupData.avatar);
 
   //  dispatch create account action
-  const response = await dispatch(createAccount(formData));
-  console.log(response);
+  const res = await dispatch(createAccount(formData));
+  console.log(res);
 
   // redirecting to login page if true
-  if (response?.payload?.success) {
-    navigate("/");  // Navigate to the home page or login page
-  // toast.success("Account created successfully!");
-}
+  if (res.payload.success) navigate("/login");
+
 
   setSingupData({
     fullName: "",

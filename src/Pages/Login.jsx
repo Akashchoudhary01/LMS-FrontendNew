@@ -34,16 +34,11 @@ const Login = () => {
     }
 
     //  dispatch login  actions
-    const response = await dispatch(login(loginData));
-    console.log(response);
+    const res = await dispatch(login(loginData));
+    console.log(res);
 
     // redirecting to login page if true
-    if (response?.payload?.success) {
-        navigate("/");
-        toast.success("User logged in successfully!");
-      } else {
-        toast.error(response?.payload?.message || "Login failed");
-      }
+    if (res?.payload?.success) navigate("/");
       
     setLoginData({
       email: "",
