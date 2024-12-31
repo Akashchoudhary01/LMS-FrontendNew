@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import Footer from '../Components/Footer';
 import { Logout } from '../redux/Slices/AuthSlice';
-
+import logo from '../assets/images/logo.png'
 
 function HomeLayout({ children }) {
     const dispatch = useDispatch();
@@ -38,8 +38,12 @@ function HomeLayout({ children }) {
     }
 
     return (
-        <div className="min-h-[90vh] ">
+        <div className="min-h-[90vh] relative ">
             {/* Drawer */}
+            <div className="absolute top-3 text-white right-4 z-60">
+                 <img src={logo} alt="Logo" className="h-16 w-auto" /> {/* Adjust logo size */}
+                 </div>
+
             <div className="drawer absolute left-0 z-50 w-fit">
                 <input id="my-drawer" type="checkbox" className="drawer-toggle" />
                 <div className="drawer-content">
@@ -47,6 +51,7 @@ function HomeLayout({ children }) {
                         <FiMenu size="32px" className="font-bold text-white m-4" onClick={changeWidth} />
                     </label>
                 </div>
+               
                 <div className="drawer-side w-0">
                     <label htmlFor="my-drawer" className="drawer-overlay"></label>
                     <ul className="menu p-4 h-[100%] w-48 sm:w-80 bg-base-100 text-base-content">
