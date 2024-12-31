@@ -7,4 +7,4 @@ const axiosInstances = axios.create();
 axiosInstances.defaults.baseURL = BASE_URL;
 axiosInstances.defaults.withCredentials = true;
 
-export default axiosInstances;
+export default axiosInstances;7
