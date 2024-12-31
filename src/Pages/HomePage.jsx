@@ -18,7 +18,7 @@ function HomePage() {
       <span className="text-blue-500 font-bold">Online Courses</span>
     </h1>
     <p className="text-base md:text-xl text-gray-200">
-      <span className="text-2xl text-blue-500">CodeIt</span> is your one-stop-shop for <span className=" text-blue-500">upscaling</span>. Get maximum value for time
+      <span className=" font-bold text-red-600">CodeCraft</span> is your one-stop-shop for <span className=" text-blue-500">upscaling</span>. Get maximum value for time
       and resources you invest, with  <span className=" text-blue-500">job-ready courses </span> & high-technology,
       available at the lowest cost.
     </p>
@@ -31,7 +31,7 @@ function HomePage() {
         </button>
       </Link>
       <Link to="/contact">
-        <button className="px-5 py-3 rounded-md font-semibold text-sm md:text-lg border-2 border-blue-600 cursor-pointer hover:bg-blue-600 transition-all ease-in-out duration-300">
+        <button className=" text-red-600 px-5 py-3 rounded-md font-semibold text-sm md:text-lg border-2 border-red-600 cursor-pointer hover:bg-red-700 transition-all ease-in-out duration-300">
           Contact Us
         </button>
       </Link>

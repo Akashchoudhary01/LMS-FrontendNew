@@ -14,11 +14,9 @@ function AboutUs() {
               Affordable and Quality Education
             </h1>
             <p className="text-lg md:text-2xl text-gray-200">
-              Our goal is to provide affordable and quality education to the
-              world. Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              Delectus totam placeat reprehenderit. Repellat velit excepturi
-              illo nemo ad aperiam et commodi blanditiis, iure maiores beatae
-              inventore! Architecto iusto tenetur labore?
+            At <span className="text-red-600 text-xl font-bold">CodeCraft</span>, we believe in making quality coding education accessible to everyone. Our platform offers the best coding courses, designed to cater to learners at every stage of their programming journey. Whether you're a beginner looking to start your coding adventure or an experienced developer aiming to enhance your skills, CodeCraft has something for you. We pride ourselves on delivering affordable courses without compromising on quality. With expert instructors, interactive content, and a hands-on approach, CodeCraft is your go-to resource for mastering coding at your own pace. Start learning today and unlock the world of possibilities with CodeCraft!
+
+
             </p>
           </section>
 
