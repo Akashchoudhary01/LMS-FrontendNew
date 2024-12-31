@@ -5,6 +5,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import Footer from '../Components/Footer';
 import { Logout } from '../redux/Slices/AuthSlice';
 
+
 function HomeLayout({ children }) {
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -46,7 +47,6 @@ function HomeLayout({ children }) {
                         <FiMenu size="32px" className="font-bold text-white m-4" onClick={changeWidth} />
                     </label>
                 </div>
-
                 <div className="drawer-side w-0">
                     <label htmlFor="my-drawer" className="drawer-overlay"></label>
                     <ul className="menu p-4 h-[100%] w-48 sm:w-80 bg-base-100 text-base-content">
