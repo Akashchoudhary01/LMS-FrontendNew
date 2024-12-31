@@ -17,8 +17,8 @@ const Courses = () => {
   return (
     <HomeLayout>
       {/* courses container for displaying the cards */}
-      <div className="min-h-[90vh] pt-12 pl-8 flex flex-col flex-wrap gap-10 text-white">
-        <h1 className="text-center text-3xl font-semibold">
+      <div className="min-h-[90vh] pt-12 pl-8 flex flex-col flex-wrap gap-10  text-white">
+        <h1 className="text-center text-3xl mt-6 font-semibold">
           Explore the courses made by{" "}
           <span className="font-bold text-blue-500">Industry Experts</span>
         </h1>
