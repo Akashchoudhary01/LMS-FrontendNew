@@ -7,11 +7,11 @@ const CourseCard = ({ data }) => {
   return (
     <div
       onClick={() => navigate("/course/description", { state: { ...data } })}
-      className="text-white w-[18rem] h-[430px] shadow-lg lg:p-6 rounded-lg cursor-pointer group overflow-hidden bg-zinc-700"
+      className="text-white w-[18rem] h-[480px] shadow-lg lg:p-6 rounded-lg cursor-pointer group overflow-hidden bg-zinc-700"
     >
       <div className="overflow-hidden">
         <img
-          className="h-48 w-48 rounded-tl-lg rounded-tr-lg  group-hover:scale-[1.2]  transition-all ease-in-out duration-300 "
+          className="h-48 w-48 rounded-tl-lg rounded-tr-lg m-auto group-hover:scale-[1.2]  transition-all ease-in-out duration-300 "
           src={data?.thumbnail?.secure_url}
           alt="course thumbnail"
         />

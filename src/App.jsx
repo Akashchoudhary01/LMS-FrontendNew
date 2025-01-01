@@ -6,7 +6,8 @@ import NotFound from './Pages/NotFound';
 import Singup from './Pages/Signup';
 import CourseList from './Pages/CourseList';
 import Login from './Pages/Login';
-// import Footer from './Components/Footer'
+import Contact from './Pages/Contact';
+
 
 function App() {
  
@@ -16,6 +17,7 @@ function App() {
             <Route path='/' element={<HomePage/>}></Route>
             <Route path='/About' element={<AboutUs/>}></Route>
             <Route path='/courses' element={<CourseList/>}></Route>
+            <Route path='/contact' element={<Contact/>}></Route>
 
             <Route path='/register' element={<Singup/>}></Route>
             <Route path='/login' element={<Login/>}></Route>
