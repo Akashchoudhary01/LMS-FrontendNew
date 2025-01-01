@@ -1,7 +1,8 @@
 import { useState } from "react";
 import HomeLayout from "../Layouts/HomeLayout";
 import toast from "react-hot-toast";
-import { isEmail } from "../Helpers/RegexMatcher";
+
+import axiosInstances from "../Helpers/axiosInstances";
 function Contact() {
     const [userInput , setUserInput] = useState({
         name : "",
@@ -17,22 +18,43 @@ function Contact() {
         })
         
     }
-   async function onFormSubmit(e){
+    // function to send form data to backend
+
+   const onFormSubmit= async(e)=>{
         e.preventDefault();
-        if(!userInput.email || !userInput.name ||!userInput.email){
+        if(!userInput.email || !userInput.name ||!userInput.message){
             toast.error('All filds are mandatory');
             return;
         }
-        if(!isEmail(userInput.email)){
+        if(!userInput.email.match( /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/)){
             toast.error("Invalid Email")
             return;
         }
+        try{
+            const response = axiosInstances.post('/contact' , {...userInput});
+            toast.promise(response , {
+                loading: 'Submitting your request',
+                success: 'Form Submitted Successfully',
+                error: 'Failed to submit the form'
 
-   
+            });
+            const contactResponse = await response;
+            if(contactResponse.data.success){
+                setUserInput({
+                    name : "",
+                    email:"",
+                    message:"",
+
+                })
+            }
+        }catch(err){
+            toast.error('Operation Failed')
+        }
     }
+    
 
 
-  return (
+return (
     <HomeLayout>
       <div className=" flex items-center justify-center h-[100vh]">
         <form 
@@ -50,7 +72,8 @@ function Contact() {
             id="name" 
             name="name" 
             placeholder="Enter Your Name"
-            onChange={handelInputChange}/>
+            onChange={handelInputChange}
+            value={userInput.name}/>
           </div>
 
        {/* Email */}
@@ -62,7 +85,8 @@ function Contact() {
             id="email" 
             name="email" 
             placeholder="Enter Your email"
-            onChange={handelInputChange}/>
+            onChange={handelInputChange}
+            value={userInput.email}/>
           </div>
 
        {/* Message */}
@@ -74,10 +98,11 @@ function Contact() {
             id="message" 
             name="message" 
             placeholder="Enter Your query"
+            onChange={handelInputChange}
+            value={userInput.message}
             />
           </div>
           <button type="submit"
-          onChange={handelInputChange}
           className="w-full bg-blue-500 hover:bg-blue-600 transition-all ease-in-out duration-300 rounded-sm py-2 font-semibold text-lg cursor-pointer">
             Submit
           </button>
