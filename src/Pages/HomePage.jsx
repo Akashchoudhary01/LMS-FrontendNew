@@ -5,7 +5,7 @@ import mainImage from '../assets/images/main-image.png'
 function HomePage() {
   return (
     <HomeLayout>
-       <div className="pt-10 h-[90vh] text-white flex flex-col-reverse md:flex-row items-center justify-center gap-20   px-4">
+       <div className="pt-10 h-[90vh] text-white flex flex-col-reverse  md:flex-row-reverse items-center justify-center gap-20   px-4">
   {/* Right Image Section (Moved to the Top on Mobile) */}
   <div className="w-full md:w-1/2 flex items-center justify-center order-1 md:order-none">
     <img src={mainImage} alt="Home Page" className="w-3/4 md:w-full max-w-sm md:max-w-none " />
