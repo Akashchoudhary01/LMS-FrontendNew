@@ -84,7 +84,7 @@ function CreateCourse() {
           </Link>
           <h1 className="text-center text-2xl font-bold ">Create New Course</h1>
 
-          <main className="grid grid-cols-2 gap-x-10">
+          <main className="flex flex-col md:grid md:grid-cols-2 gap-x-10">
             <div className="gap-y-6">
                 <div>
                     <label className="cursor-pointer" htmlFor="image_uploads">

@@ -5,7 +5,7 @@ import axiosInstances from '../../Helpers/axiosInstances'
 const initialState = {
     isLoggedIn: localStorage.getItem('isLoggedIn') || false,
     role :localStorage.getItem('role') || "  ",
-    data :localStorage.getItem('data') || "  ",
+    data :JSON.parse (localStorage.getItem('data') )|| "  ",
 };
 // Function to handle singup
 export const createAccount = createAsyncThunk("/auth/singup" , async(data)=>{
