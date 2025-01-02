@@ -1,8 +1,12 @@
+import HomeLayout from "../Layouts/HomeLayout";
+
 function CreateCourse(){
-    return<>
-    <h1 className="text-white text-6xl">Create Course</h1>
-    
-    </>
+    return(
+
+        <HomeLayout>
+            
+        </HomeLayout>
+    )
 
 }
 export default CreateCourse;
