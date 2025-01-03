@@ -5,6 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import Footer from "../Components/Footer";
 import { Logout } from "../redux/Slices/AuthSlice";
 import logo from "../assets/images/logo.png";
+// import Navbar from '../Components/Navbar'
 
 function HomeLayout({ children }) {
   const dispatch = useDispatch();
@@ -37,7 +38,8 @@ function HomeLayout({ children }) {
   }
 
   return (
-    <div className="min-h-[90vh] relative ">
+    <div className="min-h-[90vh] relative  ">
+       
       {/* Drawer */}
       <div className="absolute top-3  right-4 mb-2">
         <img src={logo} alt="Logo" className="h-14 w-auto md:h-16 lg:h-20" />{" "}
