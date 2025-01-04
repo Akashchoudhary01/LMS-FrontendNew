@@ -1,4 +1,4 @@
-import HomeLayout from "../Layouts/HomeLayout";
+import HomeLayout from "../../Layouts/HomeLayout";
 import { useLocation } from "react-router-dom";
 import { useSelector } from "react-redux";
 

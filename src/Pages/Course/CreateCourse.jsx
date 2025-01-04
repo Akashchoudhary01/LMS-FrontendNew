@@ -1,10 +1,10 @@
 import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import HomeLayout from "../Layouts/HomeLayout";
+import HomeLayout from "../../Layouts/HomeLayout";
 import { useState } from "react";
 import toast from "react-hot-toast";
 import { AiOutlineArrowLeft } from "react-icons/ai";
-import { createNewCourse } from "../redux/Slices/CourseSlice";
+import { createNewCourse } from "../../redux/Slices/CourseSlice";
 
 function CreateCourse() {
   const dispatch = useDispatch();

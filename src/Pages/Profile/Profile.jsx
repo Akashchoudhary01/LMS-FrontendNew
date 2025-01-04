@@ -1,6 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import HomeLayout from "../../Layouts/HomeLayout";
 import { Link } from "react-router-dom";
+import {BsPersonCircle} from 'react-icons/bs'
 
 function Profile() {
   const dispatch = useDispatch();
@@ -12,7 +13,8 @@ function Profile() {
         <div className="my-10 flex flex-col gap-4 rounded-lg p-4 text-white w-80 shadow-[0_0_10px_black]">
           <img
             className="w-40 m-auto rounded-3xl border border-black shadow-[0_0_29px_black]"
-            src={userData?.avatar?.secure_url}
+            src={userData?.avatar?.secure_url || <BsPersonCircle className="w-24 h-24 rounded-full m-auto" />
+            }
             alt="user profile image"
           />
 

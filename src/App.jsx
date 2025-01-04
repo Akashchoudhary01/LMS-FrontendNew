@@ -4,14 +4,15 @@ import HomePage from './Pages/HomePage';
 import AboutUs from './Pages/AboutUs';
 import NotFound from './Pages/NotFound';
 import Singup from './Pages/Signup';
-import CourseList from './Pages/CourseList';
+import CourseList from './Pages/Course/CourseList';
 import Login from './Pages/Login';
 import Contact from './Pages/Contact';
 import Denied from './Pages/Denied';
-import CourseDescription from './Pages/CourseDescription';
+import CourseDescription from './Pages/Course/CourseDescription';
 import RequireAuth from './Components/Auth/RequireAuth';
-import CreateCourse from './Pages/CreateCourse';
+import CreateCourse from './Pages/Course/CreateCourse';
 import Profile from './Pages/Profile/Profile';
+import EditProfile from './Pages/Profile/EditProfile';
 
 
 function App() {
@@ -36,6 +37,7 @@ function App() {
 
             <Route element={<RequireAuth allowedRoles = {["ADMIN" , "USER"]}/>}>
             <Route path='/user/profile' element={<Profile/>}></Route>
+            <Route path='/user/editprofile' element={<EditProfile/>}></Route>
 
             </Route>
 
