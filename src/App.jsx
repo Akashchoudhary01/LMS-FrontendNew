@@ -13,7 +13,7 @@ import RequireAuth from './Components/Auth/RequireAuth';
 import CreateCourse from './Pages/Course/CreateCourse';
 import Profile from './Pages/Profile/Profile';
 import EditProfile from './Pages/Profile/EditProfile';
-import Checkout from './Pages/Payment/Checkout';
+import Checkout from './Pages/Payment/Checkout'
 
 
 function App() {
