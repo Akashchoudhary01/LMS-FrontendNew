@@ -11,7 +11,8 @@ const initialState = {
     monthlySalesRecord:{}
 }
 
-export const getRazorPayId = createAsyncThunk('/razorpay/getId' , async() =>{
+// function to get the api key
+export const getRazorPayId = createAsyncThunk('/razorPay/getId' , async() =>{
     try {
         const response = await axiosInstance.get("/payments/razorpay-key");
         return response.data
@@ -22,7 +23,7 @@ export const getRazorPayId = createAsyncThunk('/razorpay/getId' , async() =>{
     }
 });
 
-// Purchase Course
+// Purchase Course buundle
 export const purchaseCourseBundle = createAsyncThunk('/purchaseCourse' , async()=>{
     try {
         const response = await axiosInstance.post("/payments/subscribe");
@@ -33,8 +34,8 @@ export const purchaseCourseBundle = createAsyncThunk('/purchaseCourse' , async()
         
     }
 });
-// verify user instense
-export const verifyUserPayment = createAsyncThunk('/payment/verify' , async(data)=>{
+// verify user Payment
+export const verifyUserPayment = createAsyncThunk('/paymentVerify' , async(data)=>{
     try {
         const response = await axiosInstance.post("/payments/verify ", {
             razorpay_payment_id : data.razorpay_payment_id , 
@@ -95,13 +96,19 @@ const razorpaySlice = createSlice({
     reducers:{},
     extraReducers:(builder)=>{
         builder
-        .addCase(getRazorPayId.fulfilled , (state , action) =>{
+        ///////
+        .addCase(getRazorPayId.rejected, () => {
+            toast.error("Failed to get razor pay id");
+          })
+          .addCase(getRazorPayId.fulfilled, (state, action) => {
             state.key = action?.payload?.key;
-        })
+          })
+          ////////
         .addCase(purchaseCourseBundle.fulfilled , (state , action) =>{
             state.subscription_id = action?.payload?.subscription_id;
         })
         
+
         .addCase(verifyUserPayment.fulfilled , (state , action) =>{
             toast.success(action?.payload?.message);
             state.isPaymentVerified = action?.payload?.success;
@@ -118,5 +125,5 @@ const razorpaySlice = createSlice({
 
     }
 })
-
+export const {} = razorpaySlice.actions;
 export default razorpaySlice.reducer;
