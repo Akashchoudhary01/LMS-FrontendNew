@@ -13,7 +13,10 @@ import RequireAuth from './Components/Auth/RequireAuth';
 import CreateCourse from './Pages/Course/CreateCourse';
 import Profile from './Pages/Profile/Profile';
 import EditProfile from './Pages/Profile/EditProfile';
+// payment
 import Checkout from './Pages/Payment/Checkout'
+import CheckoutFail from './Pages/Payment/CheckoutFail';
+import CheckoutSuccess from './Pages/Payment/CheckoutSuccess';
 
 
 function App() {
@@ -40,6 +43,9 @@ function App() {
             <Route path='/user/profile' element={<Profile/>}></Route>
             <Route path='/user/editprofile' element={<EditProfile/>}></Route>
             <Route path='/checkout' element={<Checkout/>}></Route>
+            <Route path='/checkout/success' element={<CheckoutSuccess/>}></Route>
+            <Route path='/checkout/fail' element={<CheckoutFail/>}></Route>
+
 
             </Route>
 

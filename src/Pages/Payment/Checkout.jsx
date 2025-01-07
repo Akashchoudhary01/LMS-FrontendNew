@@ -39,7 +39,7 @@ const Checkout = () => {
     const options = {
       key: razorPayKey,
       subscription_id: subscription_id,
-      name: "Coursify Pvt. Ltd.",
+      name: "code-craft Pvt Ltd",
       description: "Monthly Subscription",
       handler: async function (response) {
         paymentDetails.razorpay_payment_id = response.razorpay_payment_id;
@@ -63,8 +63,10 @@ const Checkout = () => {
         email: userData.email,
       },
       theme: {
-        color: "#F37254",
+        color: "#fffff", // Set your desired theme color
+        backdrop_color: "#f7f7f7" // Optional backdrop color
       },
+      method: ["upi"],
     };
     const paymentObject = new window.Razorpay(options);
     paymentObject.open();

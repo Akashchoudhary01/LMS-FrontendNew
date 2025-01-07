@@ -1,11 +1,21 @@
 import { useDispatch, useSelector } from "react-redux";
 import HomeLayout from "../../Layouts/HomeLayout";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { toast } from "react-hot-toast";
 import {BsPersonCircle} from 'react-icons/bs'
 
 function Profile() {
+  const nevigate = useNavigate();
   const dispatch = useDispatch();
   const userData = useSelector((state) => state?.auth?.data);
+  // handleCourseCancelSubscription
+  async function handleCourseCancelSubscription(){
+    toast.loading('initialising Cancellation')
+    await dispatch(cancelcourseBundle());
+    await dispatch (getUserData());
+    toast.success("Cancellation Complet !");
+    nevigate('/')
+  }
 
   return (
     <HomeLayout>
