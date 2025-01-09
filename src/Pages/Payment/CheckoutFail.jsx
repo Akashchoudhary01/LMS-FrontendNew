@@ -1,11 +1,11 @@
 import React from "react";
-import HomeLayout from "../../Layouts/HomeLayout";
+import Layout from "../../Layout/Layout";
 import { RxCrossCircled } from "react-icons/rx";
 import { Link } from "react-router-dom";
 
 const CheckoutFail = () => {
   return (
-    <HomeLayout>
+    <Layout>
       {/* container for checkout fail card  */}
       <div className="min-h-[90vh] flex items-center justify-center text-white">
         {/* card to display message */}
@@ -37,7 +37,7 @@ const CheckoutFail = () => {
           </Link>
         </div>
       </div>
-    </HomeLayout>
+    </Layout>
   );
 };
 

@@ -1,11 +1,11 @@
 import React from "react";
-import HomeLayout from "../../Layouts/HomeLayout";
+import Layout from "../../Layout/Layout";
 import { AiFillCheckCircle } from "react-icons/ai";
 import { Link } from "react-router-dom";
 
 const CheckoutSuccess = () => {
   return (
-    <HomeLayout>
+    <Layout>
       {/* container for checkout success card  */}
       <div className="min-h-[90vh] flex items-center justify-center text-white">
         {/* card to display message */}
@@ -38,7 +38,7 @@ const CheckoutSuccess = () => {
           </Link>
         </div>
       </div>
-    </HomeLayout>
+    </Layout>
   );
 };
 

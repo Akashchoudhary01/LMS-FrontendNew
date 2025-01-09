@@ -1,41 +1,48 @@
+import React, { useState } from "react";
 import { FiMenu } from "react-icons/fi";
-import { AiFillCloseCircle } from "react-icons/ai";
-import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
+import { AiFillCloseCircle } from "react-icons/ai";
 import Footer from "../Components/Footer";
-import { Logout } from "../redux/Slices/AuthSlice";
-import logo from "../assets/images/logo.png";
-// import Navbar from '../Components/Navbar'
+import { useDispatch, useSelector } from "react-redux";
+import { logout } from "../Redux/authSlice";
+import logo from '../Assets/Images/logo.png'
 
-function HomeLayout({ children }) {
+const Layout = ({ children }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  // Check if the user is logged in
+  // for checking user logged in or not
   const isLoggedIn = useSelector((state) => state?.auth?.isLoggedIn);
 
-  // Display options according to role
+  // for dispaying the options, according to user role
   const role = useSelector((state) => state?.auth?.role);
 
-  function changeWidth() {
-    const drawerSide = document.getElementsByClassName("drawer-side");
-    drawerSide[0].style.width = "auto";
-  }
-
-  function hideDrawer() {
+  // function to hide the drawer on close button click
+  const hideDrawer = () => {
     const element = document.getElementsByClassName("drawer-toggle");
     element[0].checked = false;
 
+    // collapsing the drawer-side width to zero
     const drawerSide = document.getElementsByClassName("drawer-side");
-    drawerSide[0].style.width = "0";
-  }
+    drawerSide[0].style.width = 0;
+  };
 
-  async function handelLogout(e) {
-    e.preventDefault();
+  // function for changing the drawer width on menu button click
+  const changeWidth = () => {
+    const drawerSide = document.getElementsByClassName("drawer-side");
+    drawerSide[0].style.width = "auto";
+  };
 
-    const res = await dispatch(Logout());
+  // function to handle logout
+  const handleLogout = async (event) => {
+    event.preventDefault();
+
+    // calling logout action
+    const res = await dispatch(logout());
+
+    // redirect to home page if true
     if (res?.payload?.success) navigate("/");
-  }
+  };
 
   return (
     <div className="min-h-[90vh] relative  ">
@@ -108,7 +115,7 @@ function HomeLayout({ children }) {
                     <Link to="/user/profile">Profile</Link>
                   </button>
                   <button
-                    onClick={handelLogout}
+                    onClick={handleLogout}
                     className="btn-secondary text-black bg-yellow-400 py-1 px-4 font-semibold rounded-md w-full hover:bg-yellow-500 transition-all ease-in-out duration-300"
                   >
                     Logout
@@ -126,6 +133,6 @@ function HomeLayout({ children }) {
       <Footer />
     </div>
   );
-}
+};
 
-export default HomeLayout;
+export default Layout;

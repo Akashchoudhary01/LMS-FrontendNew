@@ -4,23 +4,26 @@ import { AiOutlineArrowLeft } from "react-icons/ai";
 import { BsPersonCircle } from "react-icons/bs";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-
-import { getUserData, updateProfile } from "../../redux/Slices/AuthSlice";
-import HomeLayout from "../../Layouts/HomeLayout";
+import Layout from "../../Layout/Layout";
+import { getUserData, updateProfile } from "../../Redux/authSlice";
 
 const EditProfile = () => {
   const dispatch = useDispatch();
-  const userID = useSelector((state) => state?.auth?.data?._id); // Move useSelector outside useState
   const [previewImage, setImagePreview] = useState("");
+
   const [data, setData] = useState({
     fullName: "",
     avatar: undefined,
-    userID,
+    userID: useSelector((state) => state?.auth?.data?._id),
   });
 
+  // function to handle the image upload
   const getImage = (event) => {
+    event.preventDefault();
+    // getting the image
     const uploadedImage = event.target.files[0];
 
+    // if image exists then getting the url link of it
     if (uploadedImage) {
       setData({
         ...data,
@@ -34,44 +37,45 @@ const EditProfile = () => {
     }
   };
 
+  // function to set the name of user
   const setName = (event) => {
     const { name, value } = event.target;
     const newUserData = { ...data, [name]: value };
     setData(newUserData);
   };
 
+  // function to handle the form submission
   const handleFormSubmit = async (event) => {
     event.preventDefault();
 
+    // checking for the empty field
     if (!data.fullName || !data.avatar) {
       toast.error("All fields are mandatory");
       return;
     }
 
+    // checking the length of name
     if (data.fullName.length < 5) {
       toast.error("Name should have more than 5 characters");
       return;
     }
 
-    try {
-      const formData = new FormData();
-      formData.append("fullName", data.fullName);
-      formData.append("avatar", data.avatar);
+    // creating the form data from the existing data
+    const formData = new FormData();
+    formData.append("fullName", data.fullName);
+    formData.append("avatar", data.avatar);
 
-      const newUserData = [data.userID, formData];
+    const newUserData = [data.userID, formData];
 
-      await dispatch(updateProfile(newUserData));
-      await dispatch(getUserData());
+    // dispatching the api call using the thunk
+    await dispatch(updateProfile(newUserData));
 
-      toast.success("Profile updated successfully!");
-    } catch (error) {
-      toast.error("Failed to update profile");
-      console.error("Error updating profile:", error);
-    }
+    // fetching the data to update
+    await dispatch(getUserData());
   };
 
   return (
-    <HomeLayout>
+    <Layout>
       <div className="flex items-center justify-center h-[100vh]">
         <form
           onSubmit={handleFormSubmit}
@@ -79,16 +83,17 @@ const EditProfile = () => {
         >
           <h1 className="text-center text-2xl font-bold">Edit Profile Page</h1>
 
+          {/* input for image file */}
           <label className="cursor-pointer" htmlFor="image_uploads">
             {previewImage ? (
               <img
                 className="w-28 h-28 rounded-full m-auto"
                 src={previewImage}
-                alt="preview"
+                alt="preview image"
               />
             ) : (
-              <BsPersonCircle className="w-28 h-28 rounded-full m-auto text-gray-400" />
- )}
+              <BsPersonCircle className="w-28 h-28 rounded-full m-auto" />
+            )}
           </label>
           <input
             onChange={getImage}
@@ -97,7 +102,6 @@ const EditProfile = () => {
             id="image_uploads"
             name="image_uploads"
             accept=".jpg, .jpeg, .png"
-            aria-label="Upload your avatar"
           />
 
           <div className="flex flex-col gap-1">
@@ -130,7 +134,7 @@ const EditProfile = () => {
           </button>
         </form>
       </div>
-    </HomeLayout>
+    </Layout>
   );
 };
 
