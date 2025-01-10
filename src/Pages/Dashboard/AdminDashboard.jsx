@@ -39,7 +39,7 @@ const AdminDashboard = () => {
   const { allUsersCount, subscribedUsersCount } = useSelector(
     (state) => state.stat
   );
-  const { allPayments, finalMonths, monthlySalesRecord } = useSelector(
+  const { allPayments, monthlySalesRecord } = useSelector(
     (state) => state.razorpay
   );
 
@@ -59,7 +59,7 @@ const AdminDashboard = () => {
   const salesData = {
     labels: [
       "January",
-      "Febraury",
+      "February",
       "March",
       "April",
       "May",
@@ -71,7 +71,6 @@ const AdminDashboard = () => {
       "November",
       "December",
     ],
-    fontColor: "white",
     datasets: [
       {
         label: "Sales / Month",
@@ -83,15 +82,12 @@ const AdminDashboard = () => {
     ],
   };
 
-  // getting the courses data from redux toolkit store
   const myCourses = useSelector((state) => state.course.coursesData);
 
-  // function to handle the course delete
   const handleCourseDelete = async (id) => {
     if (window.confirm("Are you sure you want to delete the course?")) {
       const res = await dispatch(deleteCourse(id));
 
-      // fetching the new updated data for the course
       if (res.payload.success) {
         await dispatch(getAllCourses());
       }
@@ -108,24 +104,19 @@ const AdminDashboard = () => {
 
   return (
     <Layout>
-      <div className="min-h-[90vh] pt-5 flex flex-col flex-wrap gap-10 text-white">
-        <h1 className="text-center text-3xl font-semibold text-yellow-500">
+      <div className="min-h-[90vh]  flex flex-col items-center justify-center pt-5 px-4 sm:px-10 text-white gap-10">
+        <h1 className="text-center mt-10 text-3xl font-semibold text-yellow-500">
           Admin Dashboard
         </h1>
 
-        {/* creating the records card and chart for sales and user details */}
-        <div className="grid grid-cols-2 gap-5 m-auto mx-10">
-          {/* displaying the users chart and data */}
-          <div className="flex flex-col items-center gap-10 p-5 shadow-lg rounded-md">
-            {/* for displaying the pie chart */}
-            <div className="w-80 h-80">
+        <div className="justify-center items-center grid gap-10 sm:grid-cols-2 w-full">
+          <div className="flex flex-col items-center gap-5 p-5 shadow-lg rounded-md bg-gray-800 w-full">
+            <div className="w-full max-w-[400px] h-auto">
               <Pie data={userData} />
             </div>
 
-            {/* card for user data */}
-            <div className="grid grid-cols-2 gap-5">
-              {/* card for registered users */}
-              <div className="flex items-center justify-between py-5 px-5 gap-5 rounded-md shadow-md">
+            <div className="grid gap-4 w-full grid-cols-1 md:grid-cols-2">
+              <div className="flex items-center justify-between bg-gray-900 py-5 px-4 gap-4 rounded-md shadow-md">
                 <div className="flex flex-col items-center">
                   <p className="font-semibold">Registered Users</p>
                   <h3 className="text-4xl font-bold">{allUsersCount}</h3>
@@ -133,8 +124,7 @@ const AdminDashboard = () => {
                 <FaUsers className="text-yellow-500 text-5xl" />
               </div>
 
-              {/* card for enrolled users */}
-              <div className="flex items-center justify-between py-5 px-5 gap-5 rounded-md shadow-md">
+              <div className="flex items-center justify-between bg-gray-900 py-5 px-4 gap-4 rounded-md shadow-md">
                 <div className="flex flex-col items-center">
                   <p className="font-semibold">Subscribed Users</p>
                   <h3 className="text-4xl font-bold">{subscribedUsersCount}</h3>
@@ -144,17 +134,13 @@ const AdminDashboard = () => {
             </div>
           </div>
 
-          {/* displaying the sales chart and data */}
-          <div className="flex flex-col items-center gap-10 p-5 shadow-lg rounded-md">
-            {/* for displaying the bar chart */}
-            <div className="h-80 relative w-full">
-              <Bar className="absolute bottom-0 h-80 w-full" data={salesData} />
+          <div className="flex flex-col items-center gap-5 p-5 shadow-lg rounded-md bg-gray-800 w-full">
+            <div className="w-full max-w-[400px] h-auto">
+              <Bar data={salesData} />
             </div>
 
-            {/* card for user data */}
-            <div className="grid grid-cols-2 gap-5">
-              {/* card for registered users */}
-              <div className="flex items-center justify-between py-5 px-5 gap-5 rounded-md shadow-md">
+            <div className="grid gap-4 w-full grid-cols-1 md:grid-cols-2">
+              <div className="flex items-center justify-between bg-gray-900 py-5 px-4 gap-4 rounded-md shadow-md">
                 <div className="flex flex-col items-center">
                   <p className="font-semibold">Subscriptions Count</p>
                   <h3 className="text-4xl font-bold">{allPayments?.count}</h3>
@@ -162,8 +148,7 @@ const AdminDashboard = () => {
                 <FcSalesPerformance className="text-yellow-500 text-5xl" />
               </div>
 
-              {/* card for enrolled users */}
-              <div className="flex items-center justify-between py-5 px-5 gap-5 rounded-md shadow-md">
+              <div className="flex items-center justify-between bg-gray-900 py-5 px-4 gap-4 rounded-md shadow-md">
                 <div className="flex flex-col items-center">
                   <p className="font-semibold">Total Revenue</p>
                   <h3 className="text-4xl font-bold">
@@ -176,16 +161,11 @@ const AdminDashboard = () => {
           </div>
         </div>
 
-        {/* CRUD courses section */}
-        <div className="mx-[10%] w-[80%] self-center flex flex-col items-center justify-center gap-10 mb-10">
-          <div className="flex w-full items-center justify-between">
-            <h1 className="text-center text-3xl font-semibold">
-              Courses Overview
-            </h1>
-
-            {/* add course card */}
+        <div className="w-full items-center ml-5 justify-center overflow-x-auto bg-gray-800 rounded-md shadow-lg">
+          <div className="flex justify-between p-4">
+            <h1 className="text-2xl font-semibold">Courses Overview</h1>
             <button
-              onClick={() => {
+              onClick={() =>
                 navigate("/course/create", {
                   state: {
                     initialCourseData: {
@@ -198,91 +178,45 @@ const AdminDashboard = () => {
                       previewImage: "",
                     },
                   },
-                });
-              }}
-              className="w-fit bg-yellow-500 hover:bg-yellow-600 transition-all ease-in-out duration-300 rounded py-2 px-4 font-semibold text-lg cursor-pointer"
+                })
+              }
+              className="bg-yellow-500 hover:bg-yellow-600 transition-all ease-in-out duration-300 rounded py-2 px-4 font-semibold text-lg"
             >
               Create New Course
             </button>
           </div>
 
-          <table className="table overflow-x-scroll">
-            <thead>
+          <table className="w-full text-left table-auto overflow-hidden text-wrap">
+            <thead className="bg-gray-900">
               <tr>
-                <th>S No.</th>
-                <th>Course Title</th>
-                <th>Course Category</th>
-                <th>Instructor</th>
-                <th>Total Lectures</th>
-                <th>Course Description</th>
-                <th>Actions</th>
+                <th className="p-2">S No.</th>
+                <th className="p-2">Course Title</th>
+                <th className="p-2">Category</th>
+                <th className="p-2">Instructor</th>
+                <th className="p-2">Lectures</th>
+                <th className="p-2">Description</th>
+                <th className="p-2">Actions</th>
               </tr>
             </thead>
-
             <tbody>
-              {myCourses?.map((element, index) => {
-                return (
-                  <tr key={element?._id}>
-                    <td>{index + 1}</td>
-                    <td>
-                      <textarea
-                        readOnly
-                        className="w-40 h-auto bg-transparent resize-none"
-                        value={element?.title}
-                      ></textarea>
-                    </td>
-                    <td>{element?.category}</td>
-                    <td>{element?.createdBy}</td>
-                    <td>{element?.numberOfLectures}</td>
-                    <td className="max-w-28 overflow-hidden text-ellipsis whitespace-nowrap">
-                      <textarea
-                        readOnly
-                        className="w-80 h-auto bg-transparent resize-none"
-                        value={element?.description}
-                      ></textarea>
-                    </td>
-
-                    <td className="flex items-center gap-4">
-                      {/* to edit the course */}
-                      <button
-                        onClick={() =>
-                          navigate("/course/create", {
-                            state: {
-                              initialCourseData: {
-                                newCourse: false,
-                                ...element,
-                              },
-                            },
-                          })
-                        }
-                        className="bg-yellow-500 hover:bg-yellow-600 transition-all ease-in-out duration-300 text-xl py-2 px-4 rounded-md font-bold"
-                      >
-                        <MdOutlineModeEdit />
-                      </button>
-
-                      {/* to delete the course */}
-                      <button
-                        onClick={() => handleCourseDelete(element._id)}
-                        className="bg-red-500 hover:bg-red-600 transition-all ease-in-out duration-30 text-xl py-2 px-4 rounded-md font-bold"
-                      >
-                        <BsTrash />
-                      </button>
-
-                      {/* to CRUD the lectures */}
-                      <button
-                        onClick={() =>
-                          navigate("/course/displaylectures", {
-                            state: { ...element },
-                          })
-                        }
-                        className="bg-green-500 hover:bg-green-600 transition-all ease-in-out duration-30 text-xl py-2 px-4 rounded-md font-bold"
-                      >
-                        <BsCollectionPlayFill />
-                      </button>
-                    </td>
-                  </tr>
-                );
-              })}
+              {myCourses?.map((course, index) => (
+                <tr key={course._id} className="bg-gray-700">
+                  <td className="p-2">{index + 1}</td>
+                  <td className="p-2">{course.title}</td>
+                  <td className="p-2">{course.category}</td>
+                  <td className="p-2">{course.createdBy}</td>
+                  <td className="p-2">{course.numberOfLectures}</td>
+                  <td className="p-2 truncate">{course.description}</td>
+                  <td className="p-2 flex gap-2">
+                    <button className="bg-yellow-500 px-2 py-1 rounded">
+                      <MdOutlineModeEdit />
+                    </button>
+                    <button className="bg-red-500 px-2 py-1 rounded">
+                      <BsTrash />
+                    </button>
+                  </td>
+                </tr>
+              ))}
             </tbody>
           </table>
         </div>

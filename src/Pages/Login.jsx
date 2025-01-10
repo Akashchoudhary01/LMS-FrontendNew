@@ -89,7 +89,7 @@ const Login = () => {
           {/* guest account access */}
           <div
             onClick={() =>
-              setLoginData({ email: "test@gmail.com", password: "Test@123" })
+              setLoginData({ email: "guestHubhai@gmail.com", password: "12345678" })
             }
             className="text-center link text-accent cursor-pointer"
           >

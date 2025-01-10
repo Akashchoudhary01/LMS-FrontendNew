@@ -55,7 +55,7 @@ const App = () => {
         <Route element={<RequireAuth allowedRoles={["ADMIN"]} />}>
           <Route path="/admin/dashboard" element={<AdminDashboard />} />
           <Route path="/course/addlecture" element={<AddLecture />} />
-          <Route path="/course/create" element={<CreateCourse />} />
+          <Route path="/course/create" element={<CreateCourse/>} />
         </Route>
 
         <Route path="*" element={<NotFound />} />

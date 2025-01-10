@@ -76,15 +76,16 @@ const Layout = ({ children }) => {
             <li>
               <Link to="/">Home</Link>
             </li>
+             {/* displaying dashboard, if user is logged in */}
             {isLoggedIn && role === "ADMIN" && (
               <li>
-                <Link to="/admin/dashbord">Admin Dashboard</Link>
+                <Link to="/admin/dashboard">Admin Dashboard</Link>
               </li>
             )}
 
             {isLoggedIn && role === "ADMIN" && (
               <li>
-                <Link to="/courses/create">Create Course</Link>
+                <Link to="/course/create">Create Course</Link>
               </li>
             )}
             <li>

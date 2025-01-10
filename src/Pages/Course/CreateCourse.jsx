@@ -1,3 +1,4 @@
+// export default CreateCourse;
 import React, { useState } from "react";
 import { toast } from "react-hot-toast";
 import { useDispatch } from "react-redux";
@@ -9,33 +10,35 @@ import { AiOutlineArrowLeft } from "react-icons/ai";
 const CreateCourse = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const location = useLocation();
 
-  // for getting the data from location of previous component
-  const { initialCourseData } = useLocation().state;
+  // Fallback for initialCourseData if no state is provided
+  const initialCourseData = location.state?.initialCourseData || {
+    newCourse: true,
+    title: "",
+    category: "",
+    createdBy: "",
+    description: "",
+    thumbnail: { secure_url: "" },
+    _id: null,
+  };
 
-  // for toggling disable of image input box
-  const [isDisabled, setIsDisabled] = useState(!initialCourseData?.newCourse);
+  const [isDisabled, setIsDisabled] = useState(!initialCourseData.newCourse);
 
-  // for storing the user input
   const [userInput, setUserInput] = useState({
-    title: initialCourseData?.title,
-    category: initialCourseData?.category,
-    createdBy: initialCourseData?.createdBy,
-    description: initialCourseData?.description,
+    title: initialCourseData.title,
+    category: initialCourseData.category,
+    createdBy: initialCourseData.createdBy,
+    description: initialCourseData.description,
     thumbnail: null,
-    previewImage: initialCourseData?.thumbnail?.secure_url,
+    previewImage: initialCourseData.thumbnail?.secure_url,
   });
 
-  // function to handle the image upload
   const getImage = (event) => {
     event.preventDefault();
-    // getting the image
     const uploadedImage = event.target.files[0];
-    console.log(uploadedImage);
 
-    // if image exists then getting the url link of it
     if (uploadedImage) {
-      // setUserInput({ ...userInput, thumbnail: uploadedImage });
       const fileReader = new FileReader();
       fileReader.readAsDataURL(uploadedImage);
       fileReader.addEventListener("load", function () {
@@ -48,7 +51,6 @@ const CreateCourse = () => {
     }
   };
 
-  // function to handle user input
   const handleUserInput = (event) => {
     const { name, value } = event.target;
     setUserInput({
@@ -57,16 +59,12 @@ const CreateCourse = () => {
     });
   };
 
-  // function to handle form submission
   const handleFormSubmit = async (event) => {
     event.preventDefault();
 
-    let res = undefined;
+    let res;
 
-    // for creating a new course
     if (initialCourseData.newCourse) {
-      //   checking for the empty fields
-      console.log(userInput);
       if (
         !userInput.title ||
         !userInput.category ||
@@ -77,13 +75,8 @@ const CreateCourse = () => {
         toast.error("All fields are mandatory");
         return;
       }
-
-      // calling the api
       res = await dispatch(createNewCourse(userInput));
-    }
-    // for updating an existing course
-    else {
-      //   checking for the empty fields
+    } else {
       if (
         !userInput.title ||
         !userInput.category ||
@@ -95,24 +88,19 @@ const CreateCourse = () => {
       }
 
       const data = { ...userInput, id: initialCourseData._id };
-      // calling the api
       res = await dispatch(updateCourse(data));
     }
 
-    // clearing the input fields
     if (res?.payload?.success) {
       setUserInput({
         title: "",
         category: "",
         createdBy: "",
         description: "",
-        thumbnail: undefined,
+        thumbnail: null,
         previewImage: "",
       });
-
       setIsDisabled(false);
-
-      // redirecting the user to admin dashboard
       navigate("/admin/dashboard");
     }
   };
@@ -120,10 +108,9 @@ const CreateCourse = () => {
   return (
     <Layout>
       <div className="flex items-center justify-center h-[100vh]">
-        {/* card for creating the new card */}
         <form
           onSubmit={handleFormSubmit}
-          className="flex flex-col justify-center gap-5 rounded-lg p-4 text-white w-[700px] h-[450px] my-10 shadow-[0_0_10px_black] relative"
+          className="flex flex-col justify-center gap-5 rounded-lg p-4 text-white w-[80%] my-10 shadow-[0_0_10px_black]  relative"
         >
           <Link
             to={"/admin/dashboard"}
@@ -132,28 +119,24 @@ const CreateCourse = () => {
             <AiOutlineArrowLeft />
           </Link>
 
-          <h1 className="text-center text-2xl font-bold">
-            {!initialCourseData.newCourse ? "Update" : "Create new"}{" "}
-            <span>Course</span>
+          <h1 className=" text-center text-2xl font-bold">
+            {!initialCourseData.newCourse ? "Update" : "Create New"} Course
           </h1>
 
-          <main className="grid grid-cols-2 gap-x-10">
-            {/* for course basic details */}
-            <div className="space-y-6">
+          <main className=" flex flex-col md:grid md:grid-cols-2 gap-x-10">
+            <div className="gap-y-6">
               <div
                 onClick={() =>
-                  !initialCourseData.newCourse
-                    ? toast.error("Cannot update thumbnail image")
-                    : ""
+                  !initialCourseData.newCourse &&
+                  toast.error("Cannot update thumbnail image")
                 }
               >
-                {/* input for image file */}
                 <label className="cursor-pointer" htmlFor="image_uploads">
                   {userInput.previewImage ? (
                     <img
                       className="w-full h-44 m-auto border"
                       src={userInput.previewImage}
-                      alt="preview image"
+                      alt="Preview"
                     />
                   ) : (
                     <div className="w-full h-44 m-auto flex items-center justify-center border">
@@ -174,14 +157,13 @@ const CreateCourse = () => {
                 />
               </div>
 
-              {/* adding the title section */}
               <div className="flex flex-col gap-1">
                 <label className="text-lg font-semibold" htmlFor="title">
                   Course Title
                 </label>
                 <input
                   required
-                  type="name"
+                  type="text"
                   name="title"
                   id="title"
                   placeholder="Enter the course title"
@@ -192,35 +174,30 @@ const CreateCourse = () => {
               </div>
             </div>
 
-            {/* for course description and go to profile button */}
-
-            {/* adding the course description */}
             <div className="flex flex-col gap-1">
-              {/* adding the instructor */}
               <div className="flex flex-col gap-1">
                 <label className="text-lg font-semibold" htmlFor="createdBy">
                   Instructor Name
                 </label>
                 <input
                   required
-                  type="name"
+                  type="text"
                   name="createdBy"
                   id="createdBy"
-                  placeholder="Enter the instructure name"
+                  placeholder="Enter the instructor name"
                   className="bg-transparent px-2 py-1 border"
                   value={userInput.createdBy}
                   onChange={handleUserInput}
                 />
               </div>
 
-              {/* adding the category */}
               <div className="flex flex-col gap-1">
                 <label className="text-lg font-semibold" htmlFor="category">
                   Course Category
                 </label>
                 <input
                   required
-                  type="name"
+                  type="text"
                   name="category"
                   id="category"
                   placeholder="Enter the category name"
@@ -249,7 +226,7 @@ const CreateCourse = () => {
           </main>
 
           <button
-            className="w-full bg-yellow-600 hover:bg-yellow-500 transition-all ease-in-out duration-300 rounded-sm py-2 font-semibold text-lg cursor-pointer"
+            className="w-full bg-blue-600 hover:bg-blue-500 transition-all ease-in-out duration-300 rounded-sm py-2 font-semibold text-lg cursor-pointer"
             type="submit"
           >
             {!initialCourseData.newCourse ? "Update Course" : "Create Course"}
