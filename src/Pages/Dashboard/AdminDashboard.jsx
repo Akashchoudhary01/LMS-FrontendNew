@@ -103,20 +103,20 @@ const AdminDashboard = () => {
   }, []);
 
   return (
-    <Layout>
+    <Layout >
       <div className="min-h-[90vh]  flex flex-col items-center justify-center pt-5 px-4 sm:px-10 text-white gap-10">
-        <h1 className="text-center mt-10 text-3xl font-semibold text-yellow-500">
+        <h1 className="text-center mt-10 text-3xl font-semibold text-blue-700">
           Admin Dashboard
         </h1>
 
         <div className="justify-center items-center grid gap-10 sm:grid-cols-2 w-full">
-          <div className="flex flex-col items-center gap-5 p-5 shadow-lg rounded-md bg-gray-800 w-full">
+          <div className="flex flex-col items-center gap-5 p-5 shadow-lg rounded-md bg-blue-300 w-full">
             <div className="w-full max-w-[400px] h-auto">
               <Pie data={userData} />
             </div>
 
             <div className="grid gap-4 w-full grid-cols-1 md:grid-cols-2">
-              <div className="flex items-center justify-between bg-gray-900 py-5 px-4 gap-4 rounded-md shadow-md">
+              <div className="flex items-center justify-between bg-blue-600 py-5 px-4 gap-4 rounded-md shadow-md">
                 <div className="flex flex-col items-center">
                   <p className="font-semibold">Registered Users</p>
                   <h3 className="text-4xl font-bold">{allUsersCount}</h3>
@@ -124,9 +124,9 @@ const AdminDashboard = () => {
                 <FaUsers className="text-yellow-500 text-5xl" />
               </div>
 
-              <div className="flex items-center justify-between bg-gray-900 py-5 px-4 gap-4 rounded-md shadow-md">
+              <div className="flex items-center justify-between bg-blue-600 py-5 px-4 gap-4 rounded-md shadow-md">
                 <div className="flex flex-col items-center">
-                  <p className="font-semibold">Subscribed Users</p>
+                  <p className="font-semibold ">Subscribed Users</p>
                   <h3 className="text-4xl font-bold">{subscribedUsersCount}</h3>
                 </div>
                 <FaUsers className="text-green-500 text-5xl" />
@@ -134,13 +134,13 @@ const AdminDashboard = () => {
             </div>
           </div>
 
-          <div className="flex flex-col items-center gap-5 p-5 shadow-lg rounded-md bg-gray-800 w-full">
+          <div className="flex flex-col items-center gap-5 p-5 shadow-lg rounded-md bg-blue-300 w-full">
             <div className="w-full max-w-[400px] h-auto">
               <Bar data={salesData} />
             </div>
 
             <div className="grid gap-4 w-full grid-cols-1 md:grid-cols-2">
-              <div className="flex items-center justify-between bg-gray-900 py-5 px-4 gap-4 rounded-md shadow-md">
+              <div className="flex items-center justify-between bg-blue-600 py-5 px-4 gap-4 rounded-md shadow-md">
                 <div className="flex flex-col items-center">
                   <p className="font-semibold">Subscriptions Count</p>
                   <h3 className="text-4xl font-bold">{allPayments?.count}</h3>
@@ -148,7 +148,7 @@ const AdminDashboard = () => {
                 <FcSalesPerformance className="text-yellow-500 text-5xl" />
               </div>
 
-              <div className="flex items-center justify-between bg-gray-900 py-5 px-4 gap-4 rounded-md shadow-md">
+              <div className="flex items-center justify-between bg-blue-600 py-5 px-4 gap-4 rounded-md shadow-md">
                 <div className="flex flex-col items-center">
                   <p className="font-semibold">Total Revenue</p>
                   <h3 className="text-4xl font-bold">
@@ -161,7 +161,7 @@ const AdminDashboard = () => {
           </div>
         </div>
 
-        <div className="w-full items-center ml-5 justify-center overflow-x-auto bg-gray-800 rounded-md shadow-lg">
+        <div className="w-full items-center ml-5  justify-center  bg-gray-800 rounded-md shadow-lg">
           <div className="flex justify-between p-4">
             <h1 className="text-2xl font-semibold">Courses Overview</h1>
             <button
@@ -186,7 +186,7 @@ const AdminDashboard = () => {
             </button>
           </div>
 
-          <table className="w-full text-left table-auto overflow-hidden text-wrap">
+          <table className="w-full text-left table-auto text-wrap">
             <thead className="bg-gray-900">
               <tr>
                 <th className="p-2">S No.</th>

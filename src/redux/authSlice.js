@@ -96,6 +96,7 @@ export const updateProfile = createAsyncThunk("/user/update/profile", async (dat
   try {
     const res = await axiosInstance.put(`/user/update/${data[0]}`, data[1]);
     toast.success(res?.data?.message || "Profile updated successfully");
+    toast.loading( "Updating Your Profile")
     return res.data;
   } catch (error) {
     toast.error(error?.response?.data?.message || "Failed to update profile");
