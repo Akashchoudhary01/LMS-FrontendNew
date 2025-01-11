@@ -211,7 +211,8 @@ const AdminDashboard = () => {
                     <button className="bg-yellow-500 px-2 py-1 rounded">
                       <MdOutlineModeEdit />
                     </button>
-                    <button className="bg-red-500 px-2 py-1 rounded">
+                    <button onClick={handleCourseDelete}
+                     className="bg-red-500 px-2 py-1 rounded">
                       <BsTrash />
                     </button>
                   </td>

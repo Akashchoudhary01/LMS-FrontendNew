@@ -16,20 +16,23 @@ const Courses = () => {
 
   return (
     <Layout>
+      <div className="min-h-[90vh]  flex flex-col items-center justify-center">
+
       {/* courses container for displaying the cards */}
-      <div className="min-h-[90vh] pt-12 pl-20 flex flex-col flex-wrap gap-10 text-white">
+      <div className=" flex pt-20 flex-wrap gap-10 text-white items-center justify-center">
         <h1 className="text-center text-3xl font-semibold">
           Explore the courses made by{" "}
           <span className="font-bold text-blue-500">Industry Experts</span>
         </h1>
 
         {/* wrapper for courses card */}
-        <div className="mb-10 justify-center items-center flex flex-wrap gap-1">
+        <div className="mb-10 justify-center items-center flex flex-wrap gap-5">
           {coursesData?.map((element) => {
             return <CourseCard key={element._id} data={element} />;
           })}
         </div>
       </div>
+          </div>
     </Layout>
   );
 };
