@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 const Homepage = () => {
   return (
     <Layout>
-     <div className="pt-10  h-[90vh] p-15 text-white flex flex-col-reverse  md:flex-row-reverse items-center justify-center gap-10   px-4">
+     <div className="pt-10 h-[90vh] bg-sky-100 p-15 text-black flex flex-col-reverse  md:flex-row-reverse items-center justify-center gap-10   px-4">
       {/* Right Image Section (Moved to the Top on Mobile) */}
       <div className="w-full md:w-1/2 flex items-center justify-center order-1  md:mt-4 md:order-none">
         <img src={homePageMainImage} alt="Home Page" className="w-[70%] md:w-full max-w-sm md:max-w-none " />
@@ -18,8 +18,8 @@ const Homepage = () => {
           Find Out The Best!{" "}
           <span className="text-blue-500 font-bold">Online Courses</span>
         </h1>
-        <p className="text-base md:text-xl text-gray-200">
-          <span className=" font-bold text-red-600">CodeCraft</span> is your one-stop-shop for <span className=" text-blue-500">upscaling</span>. Get maximum value for time
+        <p className="text-base md:text-xl text-black-200">
+          <span className=" font-bold text-pink-600">CodeCraft</span> is your one-stop-shop for <span className=" text-blue-500">upscaling</span>. Get maximum value for time
           and resources you invest, with  <span className=" text-blue-500">job-ready courses </span> & high-technology,
           available at the lowest cost.
         </p>
@@ -32,7 +32,7 @@ const Homepage = () => {
             </button>
           </Link>
           <Link to="/contact">
-            <button className="px-5 py-3 rounded-md font-semibold text-sm md:text-lg border cursor-pointer hover:bg-blue-600 hover:border-none transition-all ease-in-out duration-300">
+            <button className="px-5 py-3 rounded-md font-semibold text-sm md:text-lg border border-black cursor-pointer hover:bg-blue-600 hover:border-none transition-all ease-in-out duration-300">
               Contact Us
             </button>
           </Link>

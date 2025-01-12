@@ -12,7 +12,7 @@ function CarousalSlide({
             src={image}
             className="w-40 rounded-full border-2 border-gray-400"
           />
-          <p className="text-xl text-gray-200">{description}</p>
+          <p className="text-xl text-black">{description}</p>
           <h3 className="text-2xl font-semibold">{title}</h3>
           <div className="absolute  left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between">
             <a
