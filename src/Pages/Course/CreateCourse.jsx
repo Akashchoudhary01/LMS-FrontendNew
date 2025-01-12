@@ -134,12 +134,12 @@ const CreateCourse = () => {
                 <label className="cursor-pointer" htmlFor="image_uploads">
                   {userInput.previewImage ? (
                     <img
-                      className="w-full h-44 m-auto border"
+                      className="w-full h-44 m-auto border border-black"
                       src={userInput.previewImage}
                       alt="Preview"
                     />
                   ) : (
-                    <div className="w-full h-44 m-auto flex items-center justify-center border">
+                    <div className="w-full h-44 m-auto flex items-center justify-center border  border-black">
                       <h1 className="font-bold text-lg">
                         Upload your course thumbnail
                       </h1>
@@ -167,7 +167,7 @@ const CreateCourse = () => {
                   name="title"
                   id="title"
                   placeholder="Enter the course title"
-                  className="bg-transparent px-2 py-1 border"
+                  className="bg-transparent px-2 py-1 border  border-black"
                   value={userInput.title}
                   onChange={handleUserInput}
                 />
@@ -185,7 +185,7 @@ const CreateCourse = () => {
                   name="createdBy"
                   id="createdBy"
                   placeholder="Enter the instructor name"
-                  className="bg-transparent px-2 py-1 border"
+                  className="bg-transparent px-2 py-1 border  border-black"
                   value={userInput.createdBy}
                   onChange={handleUserInput}
                 />
@@ -201,7 +201,7 @@ const CreateCourse = () => {
                   name="category"
                   id="category"
                   placeholder="Enter the category name"
-                  className="bg-transparent px-2 py-1 border"
+                  className="bg-transparent px-2 py-1 border  border-black"
                   value={userInput.category}
                   onChange={handleUserInput}
                 />
@@ -217,7 +217,7 @@ const CreateCourse = () => {
                   name="description"
                   id="description"
                   placeholder="Enter the course description"
-                  className="bg-transparent px-2 py-1 border h-24 overflow-y-scroll resize-none"
+                  className="bg-transparent px-2 py-1 border h-24 overflow-y-scroll resize-none  border-black"
                   value={userInput.description}
                   onChange={handleUserInput}
                 />
