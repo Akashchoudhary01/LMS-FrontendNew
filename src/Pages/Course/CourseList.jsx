@@ -19,7 +19,7 @@ const Courses = () => {
       <div className="min-h-[90vh]  flex flex-col items-center justify-center">
 
       {/* courses container for displaying the cards */}
-      <div className=" flex pt-20 flex-wrap gap-10 text-white items-center justify-center">
+      <div className=" flex pt-20 flex-wrap gap-10 text-black items-center justify-center">
         <h1 className="text-center text-3xl font-semibold">
           Explore the courses made by{" "}
           <span className="font-bold text-blue-500">Industry Experts</span>

@@ -63,7 +63,7 @@ const AddLectures = () => {
   }, []);
   return (
     <Layout>
-      <div className=" text-white flex flex-col items-center justify-center gap-10 mx-16 min-h-[90vh]">
+      <div className=" text-black flex flex-col items-center justify-center gap-10 mx-16 min-h-[90vh]">
         <div className="flex flex-col gap-5 p-2 shadow-[0_0_10px_black] w-96 rounded-lg">
           <header className="flex items-center justify-center relative">
             <button
@@ -72,7 +72,7 @@ const AddLectures = () => {
             >
               <AiOutlineArrowLeft />
             </button>
-            <h1 className="text-xl text-yellow-500 font-semibold">
+            <h1 className="text-xl text-blue-500 font-semibold">
               Add your new lecture
             </h1>
           </header>
@@ -83,7 +83,7 @@ const AddLectures = () => {
               value={userInput.title}
               onChange={handleInputChange}
               placeholder="Enter the title for lecture"
-              className="bg-transparent px-3 py-1 border"
+              className="bg-transparent px-3 py-1 border border-black"
             />
 
             <textarea
@@ -91,7 +91,7 @@ const AddLectures = () => {
               value={userInput.description}
               onChange={handleInputChange}
               placeholder="Enter the description for lecture"
-              className="resize-none overflow-y-scroll h-24 bg-transparent px-3 py-1 border"
+              className="resize-none overflow-y-scroll h-24 bg-transparent px-3 py-1 border border-black"
             />
             {userInput.videoSrc ? (
               <video
@@ -100,7 +100,7 @@ const AddLectures = () => {
                 controls
                 controlsList="nodownload nofullscreen"
                 disablePictureInPicture
-                className="object-fill rounded-tl-lg rounded-tr-lg w-full"
+                className="object-fill rounded-tl-lg rounded-tr-lg w-full border border-black "
               ></video>
             ) : (
               <div className="h-48 border flex items-center justify-center cursor-pointer">
@@ -116,12 +116,12 @@ const AddLectures = () => {
                   id="lecture"
                   onChange={getVideo}
                   accept="video/mp4,video/x-m4v,video/*"
-                  className="hidden"
+                  className="hidden border"
                 />
               </div>
             )}
 
-            <button className="btn-primary py-1 font-semibold text-lg">
+            <button className="btn-primary bg-blue-500 py-1 font-semibold text-lg">
               Add Lecture
             </button>
           </form>

@@ -34,10 +34,10 @@ const DisplayLectures = () => {
   }, []);
   return (
     <Layout>
-      <div className="flex flex-col gap-10 items-center justify-center min-h-[90vh] py-10 text-white mx-[5%]">
+      <div className="flex flex-col gap-10 items-center justify-center min-h-[90vh] py-10 text-black mx-[5%]">
         {/* displaying the course name */}
 
-        <h1 className="text-center text-2xl font-semibold text-yellow-500">
+        <h1 className="text-center text-2xl font-semibold text-blue-500">
           Course Name : {courseDetails?.title}
         </h1>
 
@@ -54,12 +54,12 @@ const DisplayLectures = () => {
             ></video>
             <div>
               <h1>
-                <span className="text-yellow-500">Title : </span>
+                <span className="text-blue-500">Title : </span>
                 {lectures && lectures[currentVideoIndex]?.title}
               </h1>
               <p>
                 {" "}
-                <span className="text-yellow-500 line-clamp-4">
+                <span className="text-blue-500 line-clamp-4">
                   Description :{" "}
                 </span>
                 {lectures && lectures[currentVideoIndex]?.description}
@@ -69,7 +69,7 @@ const DisplayLectures = () => {
 
           {/* right section for displaying all the lectures of the course */}
           <ul className="w-[28rem] p-2 rounded-lg shadow-[0_0_10px_black] space-y-4">
-            <li className="font-semibold text-xl text-yellow-500 flex items-center justify-between">
+            <li className="font-semibold text-xl text-blue-500 flex items-center justify-between">
               <p>Lectures List</p>
               {role === "ADMIN" && (
                 <button
@@ -78,7 +78,7 @@ const DisplayLectures = () => {
                       state: { ...courseDetails },
                     })
                   }
-                  className="btn-primary px-2 py-1 rounded-md font-semibold text-sm"
+                  className="btn-primary px-2 py-1 bg-blue-500 rounded-md font-semibold text-sm"
                 >
                   Add New Lecture
                 </button>
@@ -92,7 +92,7 @@ const DisplayLectures = () => {
                       className="cursor-pointer"
                       onClick={() => setCurrentVideoIndex(index)}
                     >
-                      <span className="text-yellow-500">
+                      <span className="text-blue-500">
                         {" "}
                         Lecture {index + 1} :{" "}
                       </span>
@@ -103,7 +103,7 @@ const DisplayLectures = () => {
                         onClick={() =>
                           handleLectureDelete(courseDetails?._id, element?._id)
                         }
-                        className="btn-primary px-2 py-1 rounded-md font-semibold text-sm"
+                        className="btn-primary px-2 py-1 bg-red-600 rounded-md font-semibold text-sm"
                       >
                         Delete Lecture
                       </button>

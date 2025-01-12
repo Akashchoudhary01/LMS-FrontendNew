@@ -16,7 +16,7 @@ const CourseDescription = () => {
   return (
     <Layout>
       {/* wrapper for course description */}
-      <div className="min-h-[90vh] flex-wrap pt-12 px-20 flex flex-col items-center justify-center text-white">
+      <div className="min-h-[90vh] flex-wrap pt-12 px-20 flex flex-col shadow[0_0_10px-black] items-center justify-center text-black">
         {/* displaying the course details */}
         <div className="flex flex-col gap-10 md:grid md:grid-cols-2 md:gap-10 py-10 relative">
           {/* creating the left side of description box */}

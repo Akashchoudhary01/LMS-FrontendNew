@@ -7,8 +7,8 @@ const Footer = () => {
 
   return( 
          <>
-         <footer className='relative left-0 bottom-0 w-full h-[10vh] md:h-[10vh] md:mb-0 sm:h-[10vh] lg:h-[10vh] py-2 flex flex-col sm:flex-row items-center justify-between text-gray-100 bg-gradient-to-r from-blue-900 to-blue-600 px-4 sm:px-10 md:px-20'>
-         <section className='text-lg'>
+         <footer className='relative left-0 bottom-0 w-full h-[10vh] md:h-[10vh] md:mb-0 sm:h-[10vh] lg:h-[10vh] py-2 flex flex-col sm:flex-row items-center justify-between text-gray-100 bg-gradient-to-l from-blue-950 to-blue-400 px-4 sm:px-10 md:px-20'>
+         <section className='text-lg text-gray-100'>
              Copyright {year} | All right Reserved
          </section>
  
