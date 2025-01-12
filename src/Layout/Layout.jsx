@@ -49,8 +49,7 @@ const Layout = ({ children }) => {
        
       {/* Drawer */}
       <div className="absolute top-3  right-4 mb-2">
-        <img src={logo} alt="Logo" className="h-14 w-auto md:h-16 lg:h-20" />{" "}
-        {/* Adjust logo size */}
+        <img src={logo} alt="Logo" className="h-16 w-auto md:h-16 lg:h-20" />{" "}
       </div>
 
       <div className="drawer absolute left-0 z-50 w-fit">
