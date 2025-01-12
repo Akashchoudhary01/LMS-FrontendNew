@@ -110,7 +110,7 @@ const CreateCourse = () => {
       <div className="flex items-center justify-center h-[100vh]">
         <form
           onSubmit={handleFormSubmit}
-          className="flex flex-col justify-center gap-5 rounded-lg p-4 text-white w-[80%] my-10 shadow-[0_0_10px_black]  relative"
+          className="flex flex-col justify-center gap-5 rounded-lg p-4 text-black w-[80%] my-10 shadow-[0_0_10px_black]  relative"
         >
           <Link
             to={"/admin/dashboard"}
